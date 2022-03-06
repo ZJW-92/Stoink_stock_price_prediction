@@ -138,7 +138,6 @@ The client aims to present the option of using our model to predict what the inc
 ![screenshot1](screenshot/screenshot1.png)
 ![screenshot2](screenshot/screenshot2.png)
 ![screenshot3](screenshot/screenshot3.png)
-![screenshot4](screenshot/screenshot4.png)
 
 # Project management 
 [Project management](ProjectManagement.md)
