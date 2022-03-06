@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: stoink-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: stoink
+          image: samgun6/stoink:v1.3.0
+          command: ['python', 'client/manage.py', 'migrate']
+      restartPolicy: Never
+  backoffLimit: 5

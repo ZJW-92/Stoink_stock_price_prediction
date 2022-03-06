@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stoink-deploy
+  labels:
+    app: stoink
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      pod: stoink
+  template:
+    metadata:
+      labels:
+        pod: stoink
+    spec:
+      containers:
+        - name: stoink
+          image: samgun6/stoink:v1.3.0
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 8000
+          env:
+          - name: REDIS_HOST
+            value: redis-service
+

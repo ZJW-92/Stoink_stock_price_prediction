@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">All stocks forecast increase in %  </h1>
+      </div>
+    </main>
+  </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+                <th scope="col">Stock symbols</th>
+              <th scope="col">Price increase (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for allstock in allstocks %}
+            <tr>
+              <td>{{allstock}}</td>
+              <td>{{predictions}}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

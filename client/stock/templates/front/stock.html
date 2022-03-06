@@ -1,0 +1,288 @@
+  {% load static %}
+<!-- Bootstrap core CSS -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+      {% block content %}
+
+	  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		  <h1 class="h2">STOINK Stock Price Prediction System </h1>
+		</div>
+		<h3>Select a company's stock that you want to know future price</h3>
+		  <form method="post" action="predict">
+			{% csrf_token %}
+			<div class="form-group my-3">
+			  <label for="exampleInputEmail1">Stock list</label>
+			  <div class="input-group col-md-7">
+			  <select class="form-control" name="stock_title" id="stock_title" onchange="getAccuracy()">
+				  <option selected>Please choose a stock </option>
+				  <option value="AAPL">AAPL	Apple Inc. Common Stock</option>
+				  <option value="MSFT">MSFT	Microsoft Corporation Common Stock</option>
+				  <option value="GOOG">GOOG	Alphabet Inc. Class C Capital Stock</option>
+				  <option value="GOOGL">GOOGL	Alphabet Inc. Class A Common Stock</option>
+                  <option value="AMZN">AMZN	Amazon.com Inc. Common Stock</option>
+				  <option value="TSLA">TSLA	Tesla Inc. Common Stock</option>
+				  <option value="FB">FB	Meta Platforms Inc. Class A Common Stock</option>
+				  <option value="NVDA">NVDA	NVIDIA Corporation Common Stock</option>
+                  <option value="TSM">TSM Taiwan Semiconductor Manufacturing Company Ltd.</option>
+				  <option value="JPM">JPM JP Morgan Chase & Co. Common Stock</option>
+				  <option value="V">V  Visa Inc.</option>
+				  <option value="JNJ">JNJ  Johnson & Johnson Common Stock</option>
+                  <option value="UNH">UNH	UnitedHealth Group Incorporated Common Stock (DE)</option>
+				  <option value="HD">HD	Home Depot Inc. (The) Common Stock</option>
+				  <option value="ADI">ADI	Analog Devices Inc. Common Stock</option>
+				  <option value="BAC">BAC	Bank of America Corporation Common Stock</option>
+                  <option value="WMT">WMT Walmart Inc. Common Stock</option>
+				  <option value="BABA">BABA	Alibaba Group Holding Limited American Depositary Shares each representing eight Ordinary share</option>
+				  <option value="ASML">ASML	ASML Holding N.V. New York Registry Shares</option>
+				  <option value="PG">PG	Procter & Gamble Company (The) Common Stock</option>
+                  <option value="MA">MA	Mastercard Incorporated Common Stock</option>
+				  <option value="ADBE">ADBE	Adobe Inc. Common Stock</option>
+				  <option value="NFLX">NFLX	Netflix Inc. Common Stock</option>
+				  <option value="NTES">NTES	NetEase Inc. American Depositary Shares</option>
+                  <option value="CRM">CRM	Salesforce.com Inc Common Stock</option>
+				  <option value="PFE">PFE	Pfizer Inc. Common Stock</option>
+				  <option value="DIS">DIS	Walt Disney Company (The) Common Stock</option>
+				  <option value="NKE">NKE	Nike Inc. Common Stock</option>
+                  <option value="XOM">XOM	Exxon Mobil Corporation Common Stock</option>
+				  <option value="NVO">NVO	Novo Nordisk A/S Common Stock</option>
+				  <option value="ORCL">ORCL	Oracle Corporation Common Stock</option>
+				  <option value="TM">TM	Toyota Motor Corporation Common Stock</option>
+                  <option value="TMO">TMO	Thermo Fisher Scientific Inc Common Stock</option>
+				  <option value="LLY">LLY	Eli Lilly and Company Common Stock</option>
+				  <option value="CMCSA">CMCSA	Comcast Corporation Class A Common Stock</option>
+				  <option value="KO">KO	Coca-Cola Company (The) Common Stock</option>
+                  <option value="PYPL">PYPL	PayPal Holdings Inc. Common Stock</option>
+				  <option value="AVGO">AVGO	Broadcom Inc. Common Stock</option>
+				  <option value="ACN">ACN	Accenture plc Class A Ordinary Shares (Ireland)</option>
+				  <option value="COST">COST	Costco Wholesale Corporation Common Stock</option>
+                  <option value="ABT">ABT	Abbott Laboratories Common Stock</option>
+				  <option value="PEP">PEP	PepsiCo Inc. Common Stock</option>
+				  <option value="DHR">DHR	Danaher Corporation Common Stock</option>
+				  <option value="CVX">CVX	Chevron Corporation Common Stock</option>
+                  <option value="CSCO">CSCO	Cisco Systems Inc. Common Stock (DE)</option>
+				  <option value="VZ">VZ	Verizon Communications Inc. Common Stock</option>
+				  <option value="MRK">MRK	Merck & Company Inc. Common Stock (new)</option>
+				  <option value="ABBV">ABBV	AbbVie Inc. Common Stock</option>
+                  <option value="SHOP">SHOP	Shopify Inc. Class A Subordinate Voting Shares</option>
+				  <option value="QCOM">QCOM	QUALCOMM Incorporated Common Stock</option>
+				  <option value="INTC">INTC	Intel Corporation Common Stock</option>
+				  <option value="WFC">WFC	Wells Fargo & Company Common Stock</option>
+                  <option value="MCD">MCD	McDonald's Corporation Common Stock</option>
+				  <option value="AMD">AMD	Advanced Micro Devices Inc. Common Stock</option>
+				  <option value="NVS">NVS	Novartis AG Common Stock</option>
+				  <option value="UPS">UPS	United Parcel Service Inc. Common Stock</option>
+                  <option value="INTU">INTU	Intuit Inc. Common Stock</option>
+				  <option value="TXN">TXN	Texas Instruments Incorporated Common Stock</option>
+				  <option value="AZN">AZN	AstraZeneca PLC American Depositary Shares</option>
+				  <option value="T">T	AT&T Inc.</option>
+                  <option value="SE">SE	Sea Limited American Depositary Shares each representing one Class A Ordinary Share</option>
+				  <option value="MS">MS	Morgan Stanley Common Stock</option>
+				  <option value="NEE">NEE	NextEra Energy Inc. Common Stock</option>
+				  <option value="LOW">LOW	Lowe's Companies Inc. Common Stock</option>
+                  <option value="LIN">LIN	Linde plc Ordinary Share</option>
+				  <option value="SAP">SAP	SAP  SE ADS</option>
+				  <option value="ANET">ANET	Arista Networks Inc. Common Stock</option>
+				  <option value="MDT">MDT	Medtronic plc. Ordinary Shares</option>
+                  <option value="SONY">SONY	Sony Group Corporation American Depositary Shares</option>
+				  <option value="SCHW">SCHW	Charles Schwab Corporation (The) Common Stock</option>
+				  <option value="UNP">UNP	Union Pacific Corporation Common Stock</option>
+				  <option value="HON">HON	Honeywell International Inc. Common Stock</option>
+                  <option value="RY">RY	Royal Bank Of Canada Common Stock</option>
+				  <option value="TMUS">TMUS	T-Mobile US Inc. Common Stock</option>
+				  <option value="PM">PM	Philip Morris International Inc Common Stock</option>
+				  <option value="BLK">BLK	BlackRock Inc. Common Stock</option>
+                  <option value="AMAT">AMAT	Applied Materials Inc. Common Stock</option>
+				  <option value="CHTR">CHTR	Charter Communications Inc. Class A Common Stock New</option>
+				  <option value="AXP">AXP	American Express Company Common Stock</option>
+				  <option value="NOW">NOW	ServiceNow Inc. Common Stock</option>
+                  <option value="JD">JD	JD.com Inc. American Depositary Shares</option>
+				  <option value="UL">UL	Unilever PLC Common Stock</option>
+				  <option value="TD">TD	Toronto Dominion Bank (The) Common Stock</option>
+				  <option value="BA">BA	Boeing Company (The) Common Stock</option>
+                  <option value="BMY">BMY	Bristol-Myers Squibb Company Common Stock</option>
+				  <option value="SBUX">SBUX	Starbucks Corporation Common Stock</option>
+				  <option value="C">C	Citigroup Inc. Common Stock</option>
+				  <option value="BHP">BHP	BHP Group Limited American Depositary Shares (Each representing two Ordinary Shares)</option>
+                  <option value="HDB">HDB	HDFC Bank Limited Common Stock</option>
+				  <option value="RTX">RTX	Raytheon Technologies Corporation Common Stock</option>
+				  <option value="GS">GS	Goldman Sachs Group Inc. (The) Common Stock</option>
+				  <option value="TTE">TTE	TotalEnergies SE</option>
+                  <option value="ISRG">ISRG	Intuitive Surgical Inc. Common Stock</option>
+				  <option value="BBL">BBL	BHP Group PlcSponsored ADR</option>
+				  <option value="SNY">SNY	Sanofi ADS</option>
+				  <option value="EL">EL	Estee Lauder Companies Inc. (The) Common Stock</option>
+                  <option value="CVS">CVS	CVS Health Corporation Common Stock</option>
+				  <option value="TGT">TGT	Target Corporation Common Stock</option>
+				  <option value="DED">DEO	Diageo plc Common Stock</option>
+				  <option value="HSBC">HSBC	HSBC Holdings plc. Common Stock</option>
+                  <option value="SNOW">SNOW	Snowflake Inc. Class A Common Stock</option>
+				  <option value="ABNB">ABNB	Airbnb Inc. Class A Common Stock</option>
+				  <option value="AMT">AMT	American Tower Corporation (REIT) Common Stock</option>
+				  <option value="AMGN">AMGN	Amgen Inc. Common Stock</option>
+                  <option value="DE">DE	Deere & Company Common Stock</option>
+				  <option value="SPGI">SPGI	S&P Global Inc. Common Stock</option>
+				  <option value="PLD">PLD	Prologis Inc. Common Stock</option>
+				  <option value="RIVN">RIVN	Rivian Automotive Inc. Class A Common Stock</option>
+                  <option value="TEAM">TEAM	Atlassian Corporation Plc Class A Ordinary Shares</option>
+				  <option value="GE">GE	General Electric Company Common Stock</option>
+				  <option value="CAT">CAT	Caterpillar Inc. Common Stock</option>
+				  <option value="SQ">SQ	Square Inc. Class A Common Stock</option>
+                  <option value="ZTS">ZTS	Zoetis Inc. Class A Common Stock</option>
+				  <option value="PDD">PDD	Pinduoduo Inc. American Depositary Shares</option>
+				  <option value="ANTM">ANTM	Anthem Inc. Common Stock</option>
+				  <option value="GSK">GSK	GlaxoSmithKline PLC Common Stock</option>
+                  <option value="BX">BX	Blackstone Inc. Common Stock</option>
+				  <option value="MMM">MMM	3M Company Common Stock</option>
+				  <option value="BUD">BUD	Anheuser-Busch Inbev SA Sponsored ADR (Belgium)</option>
+				  <option value="MRNA">MRNA	Moderna Inc. Common Stock</option>
+                  <option value="ADP">ADP	Automatic Data Processing Inc. Common Stock</option>
+				  <option value="INFY">INFY	Infosys Limited American Depositary Shares</option>
+				  <option value="SYK">SYK	Stryker Corporation Common Stock</option>
+				  <option value="RIO">RIO	Rio Tinto Plc Common Stock</option>
+                  <option value="BKNG">BKNG	Booking Holdings Inc. Common Stock</option>
+				  <option value="COP">COP	ConocoPhillips Common Stock</option>
+				  <option value="LMT">LMT	Lockheed Martin Corporation Common Stock</option>
+				  <option value="BAM">BAM	Brookfield Asset Management Inc. Common Stock</option>
+                  <option value="GM">GM	General Motors Company Common Stock</option>
+				  <option value="CNI">CNI	Canadian National Railway Company Common Stock</option>
+				  <option value="BP">BP	BP p.l.c. Common Stock</option>
+				  <option value="LRCX">LRCX	Lam Research Corporation Common Stock</option>
+                  <option value="SHW">SHW	Sherwin-Williams Company (The) Common Stock</option>
+				  <option value="MDLZ">MDLZ	Mondelez International Inc. Class A Common Stock</option>
+				  <option value="COIN">COIN	Coinbase Global Inc. Class A Common Stock</option>
+				  <option value="USB">USB	U.S. Bancorp Common Stock</option>
+                  <option value="TJX">TJX	TJX Companies Inc. (The) Common Stock</option>
+				  <option value="MU">MU	Micron Technology Inc. Common Stock</option>
+				  <option value="IBM">IBM	International Business Machines Corporation Common Stock</option>
+				  <option value="PNC">PNC	PNC Financial Services Group Inc. (The) Common Stock</option>
+                  <option value="UBER">UBER	Uber Technologies Inc. Common Stock</option>
+				  <option value="SNAP">SNAP	Snap Inc. Class A Common Stock</option>
+				  <option value="GLID">GILD	Gilead Sciences Inc. Common Stock</option>
+				  <option value="MMC">MMC	Marsh & McLennan Companies Inc. Common Stock</option>
+                  <option value="EQNR">EQNR	Equinor ASA</option>
+				  <option value="CB">CB	Chubb Limited  Common Stock</option>
+				  <option value="PTR">PTR	PetroChina Company Limited Common Stock</option>
+				  <option value="TFC">TFC	Truist Financial Corporation Common Stock</option>
+                  <option value="MO">MO	Altria Group Inc.</option>
+				  <option value="CME">CME	CME Group Inc. Class A Common Stock</option>
+				  <option value="ENB">ENB	Enbridge Inc Common Stock</option>
+				  <option value="BTI">BTI	British American Tobacco  Industries p.l.c. Common Stock ADR</option>
+                  <option value="CCI">CCI	Crown Castle International Corp. (REIT) Common Stock</option>
+				  <option value="BNS">BNS	Bank Nova Scotia Halifax Pfd 3 Ordinary Shares</option>
+				  <option value="CSX">CSX	CSX Corporation Common Stock</option>
+				  <option value="F">F	Ford Motor Company Common Stock</option>
+                  <option value="DASH">DASH	DoorDash Inc. Class A Common Stock</option>
+				  <option value="RBLX">RBLX	Roblox Corporation Class A Common Stock</option>
+				  <option value="ICE">ICE	Intercontinental Exchange Inc. Common Stock</option>
+				  <option value="ZM">ZM	Zoom Video Communications Inc. Class A Common Stock</option>
+                  <option value="DUK">DUK	Duke Energy Corporation (Holding Company) Common Stock</option>
+				  <option value="ITW">ITW	Illinois Tool Works Inc. Common Stock</option>
+				  <option value="HCA">HCA	HCA Healthcare Inc. Common Stock</option>
+				  <option value="LCID">LCID	Lucid Group Inc. Common Stock</option>
+                  <option value="WDAY">WDAY	Workday Inc. Class A Common Stock</option>
+				  <option value="MCO">MCO	Moody's Corporation Common Stock</option>
+				  <option value="EW">EW	Edwards Lifesciences Corporation Common Stock</option>
+				  <option value="CI">CI	Cigna Corporation Common Stock</option>
+                  <option value="BOX">BDX	Becton Dickinson and Company Common Stock</option>
+				  <option value="MELI">MELI	MercadoLibre Inc. Common Stock</option>
+				  <option value="EQIX">EQIX	Equinix Inc. Common Stock REIT</option>
+				  <option value="MUFG">MUFG	Mitsubishi UFJ Financial Group Inc. Common Stock</option>
+                  <option value="ADSK">ADSK	Autodesk Inc. Common Stock</option>
+				  <option value="BMO">BMO	Bank Of Montreal Common Stock</option>
+				  <option value="ABB">ABB	ABB Ltd Common Stock</option>
+				  <option value="IBN">IBN	ICICI Bank Limited Common Stock</option>
+                  <option value="WM">WM	Waste Management Inc. Common Stock</option>
+				  <option value="REGN">REGN	Regeneron Pharmaceuticals Inc. Common Stock</option>
+				  <option value="ETN">ETN	Eaton Corporation PLC Ordinary Shares</option>
+				  <option value="NET">NET	Cloudflare Inc. Class A Common Stock</option>
+                  <option value="FIS">FIS	Fidelity National Information Services Inc. Common Stock</option>
+				  <option value="NSC">NSC	Norfolk Southern Corporation Common Stock</option>
+				  <option value="APD">APD	Air Products and Chemicals Inc. Common Stock</option>
+				  <option value="ECL">ECL	Ecolab Inc. Common Stock</option>
+                  <option value="FISV">FISV	Fiserv Inc. Common Stock</option>
+				  <option value="BNTX">BNTX	BioNTech SE American Depositary Share</option>
+				  <option value="SO">SO	Southern Company (The) Common Stock</option>
+				  <option value="RACE">RACE	Ferrari N.V. Common Shares</option>
+                  <option value="CL">CL	Colgate-Palmolive Company Common Stock</option>
+				  <option value="AON">AON	Aon plc Class A Ordinary Shares (Ireland)</option>
+				  <option value="FDX">FDX	FedEx Corporation Common Stock</option>
+				  <option value="COF">COF	Capital One Financial Corporation Common Stock</option>
+                  <option value="DXCM">DXCM	DexCom Inc. Common Stock</option>
+				  <option value="PBR">PBR	Petroleo Brasileiro S.A.- Petrobras Common Stock</option>
+				  <option value="KLAC">KLAC	KLA Corporation Common Stock</option>
+				  <option value="STLA">STLA	Stellantis N.V. Common Shares</option>
+                  <option value="NIO">NIO	NIO Inc. American depositary shares each  representing one Class A ordinary share</option>
+				  <option value="UBS">UBS	UBS Group AG Registered Ordinary Shares</option>
+				  <option value="CRWD">CRWD	CrowdStrike Holdings Inc. Class A Common Stock</option>
+				  <option value="MRVL">MRVL	Marvell Technology Inc. Common Stock</option>
+			  </select>
+			  </div>
+			</div>
+              <div class="form-group">
+				<h4 style="color: green">Accuracy of model: </h4>
+				<h4 id="percentAccuracy" style="color: green"></h4>
+			  </div>
+			<div class="form-group">
+			  <button type='submit' id="submit" class="btn btn-primary" >Forecast now!</button>
+			</div>
+		  </form>
+          <form method="post" action="allstocks">
+			{% csrf_token %}
+              <button class="btn btn-primary">See all stocks</button>
+          </form>
+      <br>
+          <br>
+
+      <br>
+          <br>
+          <h2>Input values manually to make a prediction</h2>
+
+<form action="manualPredict">
+  <label for="fname">reportedEPS:</label><br>
+  <input type="text" id="reportedEPS" name="Inputone" value= "0.123"><br>
+    <label for="fname">totalNonCurrentAssets:</label><br>
+  <input type="text" id="totalNonCurrentAssets" name="Inputtwo" value="0.123"><br>
+    <label for="fname">depreciation:</label><br>
+  <input type="text" id="depreciation" name="Inputthree" value="0.123"> <br>
+    <label for="fname">proceedsFromRepaymentsOfShortTermDebt:</label><br>
+  <input type="text" id="proceedsFromRepaymentsOfShortTermDebt" name="Inputfour" value="0.123"><br>
+  <label for="lname">currentAccountsPayable:</label><br>
+  <input type="text" id="currentAccountsPayable" name="Inputfive" value="0.123"><br><br>
+  <input type="submit" value="Submit" class="btn btn-primary">
+    <h3>The forecast increase for these input values is: {{ prediction }}. </h3>
+</form>
+      <div>
+      </div>
+	  </main>
+	</div>
+  </div>
+  {% endblock %}
+
+    <script>
+    function getAccuracy() {
+        d = document.getElementById("stock_title").value;
+
+       accuracy = "12.00%";
+
+        document.getElementById("percentAccuracy").innerHTML = accuracy;
+    }
+    </script>
+  </body>
+</html>
