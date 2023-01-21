@@ -58,16 +58,19 @@ docker push --all-tags samgun6/stoink # Push all tags for selected image to dock
 - 3.  _Docker_
 
 #### Steps:
+
 -  Start fresh with minikube
 
 - 1. Build and push latest docker image
 - 2. Start/ reset minikube
+
 ```Bash
  minikube delete # Only needed when starting fresh
  minikube start
 ```
 
 - 3. Apply deployments
+
 ```Bash
 cd kubernetes
 kubectl apply -f stoink-job.yaml
@@ -83,14 +86,14 @@ kubectl apply -f stoink-deploy.yaml
 minikube start
 ```
   
-- 3. Re apply deployment file
-
-   ```Bash
+- 3. Reapply deployment file
+  
+  ```bash
    kubectl get deployments # Shows current deployment
    kubectl get pods # Shows current pods
    # Change version in stoink-deploy.yaml
    kubectl apply -f stoink-deploy.yaml
-   ``
+   ```
 
    OR
 
