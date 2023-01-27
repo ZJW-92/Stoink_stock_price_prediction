@@ -2,6 +2,15 @@
 
 _Stoink for Stock Price Prediction is a system that uses deep learning LSTM model to predict the price increase or decrease of one or more stocks for the next three months._
 
+## ***Screenshots***
+
+<img src="screenshot/screenshot1.png" width="70%" height="30%">
+<img src="screenshot/screenshot2.png" width="70%" height="30%">
+<img src="screenshot/screenshot3.png" width="70%" height="30%">
+
+
+
+
 ## ***Functionality***
 
 _The client aims to present the option of using our model to predict what the increase or decrease in percentage is going to be of a certain stock or multiple stocks._
@@ -117,12 +126,5 @@ minikube start
   kubectl get pods
   kubectl get deployments
   ```
-
-## ***Screenshots***
-
-<img src="screenshot/screenshot1.png" width="50%" height="50%">
-<img src="screenshot/screenshot2.png" width="50%" height="50%">
-<img src="screenshot/screenshot3.png" width="50%" height="50%">
-
 
 
